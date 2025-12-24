@@ -1,0 +1,24 @@
+name: synapseseq_env
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - pip
+  - numpy==1.26.3
+  - pandas==2.0.3
+  - anndata==0.10.8
+  - scanpy==1.9.3
+  - matplotlib==3.7.1
+  - jupyter==1.0.0
+  - seaborn==0.13.2
+  - statsmodels==0.14.0
+  - scipy==1.13.1
+  - scikit-learn==1.2.2
+  - shapely==2.0.1
+
+  - pip:
+      - ipykernel
+
+
