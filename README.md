@@ -7,6 +7,19 @@
 This repository provides walkthroughs for key analytical components of Synapse-seq.  
 We recommend starting with the **presynaptic vignette**, which characterizes **cortico-thalamic projections from the primary visual cortex (VISp)**.
 
+## Code
+
+**code/preprocessing**:
+ contains the scripts used to deduplicate VT dialouts and transform fastqs into cell(bead) / VT matrices.
+
+**code/CreateScoringDF.ipynb**: walks through the creation of VT scoring for projection analysis.
+
+**code/run_analysis**: reproduces Presynaptic main figures based on data accessed below.
+
+**code/postsynaptic_analysis/post_analysis.ipynb**: contains notebook used to create Postsynaptic experiment figures.
+
+
+
 ---
 
 ## Data Access
@@ -16,7 +29,7 @@ All required data is publicly available in a Google Cloud Storage bucket.
 ### Programmatic Access
 
 Data can be accessed using the Google Cloud SDK [Google Cloud SDK](https://cloud.google.com/sdk/docs/install-sdk) at:
-gs://macosko_public/Synapseseq_data_2025
+gs://macosko_public/Synapseseq_data_2026
 
 For executing vignettes, required files will be downloaded at beginning of the notebook.
 
@@ -31,14 +44,20 @@ https://drive.google.com/drive/u/0/folders/1U1V7Rei6ShXLDdc-2EoSN3UIrL0uW_OE
 
 File Info:
 
-## VISp – Presynaptic Primary Visual Cortex Injection Experiment
+## Presynapse Analysis (gs://macosko_public/Synapseseq_data_2026/Presynaptic)
+
+- **projection_target_vts.pkl**
+  Pickle file containing VTs detected at different projection sites.
+
+- **vt_freq_objs.pkl**
+  Pickle file containing the number of instances each VT was observed in the deeply sequenced pool. Used for calculating library diversity and creating VT score.
+  
+### VISp – Presynaptic Primary Visual Cortex Injection Experiment
 
 - **v1_adata.h5ad**  
   H5AD (Anndata) of snRNA-seq obtained from the VISp experiment.
-- **v1_processed_vt_df.csv**  
+- **v1_vt_df.csv**  
   DataFrame containing relationships of cell-barcode to viral tags (VT).
-- **v1_projs.pkl**  
-  Pickle file encoding a Python dictionary for VTs obtained at various projection targets.
 - **thalamus_combined_obj.pkl**  
   Pickle file encoding RNA expression obtained via Slide-seq at the thalamus.
 - **thalamus_bead_location.csv**  
@@ -48,14 +67,12 @@ File Info:
 
 ---
 
-## AC – Presynaptic Anterior Cortex Injection Experiment
+### AC – Presynaptic Anterior Cortex Injection Experiment
 
 - **aca_adata.h5ad**  
   H5AD (Anndata) of snRNA-seq obtained from the AC experiment.
-- **aca_processed_vt_df.csv**  
+- **aca_vt_df.csv**  
   DataFrame containing relationships of cell-barcode to VTs.
-- **aca_projs.pkl**  
-  Pickle file encoding a Python dictionary of VTs obtained at various projection targets.
 - **str_combined_obj.pkl**  
   Pickle file encoding RNA expression obtained via Slide-seq in the striatum.
 - **str_bead_locations.csv**  
@@ -65,8 +82,8 @@ File Info:
 
 ---
 
-## Postsynaptic_Hippocampus – Postsynaptic Hippocampus Experiment
-
+## Postsynaptic Analysis (gs://macosko_public/Synapseseq_data_2026/Postsynaptic)
+### Postsynaptic Hippocampus Experiment
 - **pyr_post_processed.csv**  
   DataFrame containing the DBSCAN cluster calls of VTs within the pyramidal layer (CA1, CA2, CA3), along with their spatial position (obtained from Slide-seq).
 - **vt_df_dgl.csv**  
