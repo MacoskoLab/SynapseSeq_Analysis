@@ -7,6 +7,19 @@
 This repository provides walkthroughs for key analytical components of Synapse-seq.  
 We recommend starting with the **presynaptic vignette**, which characterizes **cortico-thalamic projections from the primary visual cortex (VISp)**.
 
+## Code
+
+**code/preprocessing**:
+ contains the scripts used to deduplicate VT dialouts and transform fastqs into cell(bead) / VT matrices.
+
+**code/CreateScoringDF.ipynb**: walks through the creation of VT scoring for projection analysis.
+
+**code/run_analysis**: reproduces Presynaptic main figures based on data accessed below.
+
+**code/postsynaptic_analysis/post_analysis.ipynb**: contains notebook used to create Postsynaptic experiment figures.
+
+
+
 ---
 
 ## Data Access
