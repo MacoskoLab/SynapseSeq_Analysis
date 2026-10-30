@@ -36,7 +36,7 @@ For executing vignettes, required files will be downloaded at beginning of the n
 ### Manual Access
 
 You can also browse and download the data manually from the following link:  
-[Google Cloud Console – Synapseseq Data (2025)](https://console.cloud.google.com/storage/browser/macosko_public/Synapseseq_data_2025)
+[Google Cloud Console – Synapseseq Data (2026)](https://console.cloud.google.com/storage/browser/macosko_public/Synapseseq_data_2026)
 
 If one is unable to download the required data from the public google cloud bucket, we have also made a google drive link available with the data needed to run the VISp presynaptic vignette.
 https://drive.google.com/drive/u/0/folders/1U1V7Rei6ShXLDdc-2EoSN3UIrL0uW_OE
