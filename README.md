@@ -19,7 +19,6 @@ We recommend starting with the **presynaptic vignette**, which characterizes **c
 **code/postsynaptic_analysis/post_analysis.ipynb**: contains notebook used to create Postsynaptic experiment figures.
 
 
-
 ---
 
 ## Data Access
@@ -109,12 +108,55 @@ The `requirements.yaml` file can be used to create a conda environment for runni
  mamba activate synapseseq_env
 ```
 
-Next we need to export the environment so it is accessible via jupyter.
+---
+
+## Reproducing Figures
+
+### Presynaptic (`code/run_analysis.py`)
+
+Download inputs into `objects/Presynaptic/` (from the repo root):
+
 ```
-python -m ipykernel install --user --name synapseseq_env --display-name "synapseseq_env"
+mkdir -p objects/Presynaptic
+gcloud storage cp \
+    gs://macosko_public/Synapseseq_data_2026/Presynaptic/{leaf_to_subclass.pkl,projection_target_vts.pkl,vt_freq_objs.pkl,vt_processed_objs_select_cols.pkl,cellular_bg_rates.pkl} \
+    objects/Presynaptic/
+
+# AC only
+gcloud storage cp \
+    gs://macosko_public/Synapseseq_data_2026/Presynaptic/{str_combined_obj.pkl,str_vt_df_bead_merged.csv,medulla_projs_w_umi_support.csv} \
+    objects/Presynaptic/
 ```
 
-Then run jupyter-lab
+Run `code/CreateScoringDF.ipynb` to generate `v1_vt_df.csv`, `aca_vt_df.csv`, and `aca_vt_scoring_df.csv` (or download them directly from the bucket).
+
 ```
-jupyter-lab --ip='*' --port=8989
+objects/Presynaptic/
+├── leaf_to_subclass.pkl
+├── projection_target_vts.pkl
+├── vt_freq_objs.pkl
+├── vt_processed_objs_select_cols.pkl
+├── cellular_bg_rates.pkl
+├── str_combined_obj.pkl
+├── str_vt_df_bead_merged.csv
+├── medulla_projs_w_umi_support.csv
+├── v1_vt_df.csv
+├── aca_vt_df.csv
+└── aca_vt_scoring_df.csv
 ```
+
+Then, from `code/`:
+
+```
+# VISp
+python run_analysis.py --vt_df_path ../objects/Presynaptic/v1_vt_df.csv --obj_dir ../objects/Presynaptic --vt_obj_id v1 --out_dir_base ../figs
+
+# AC
+python run_analysis.py --vt_df_path ../objects/Presynaptic/aca_vt_df.csv --obj_dir ../objects/Presynaptic --vt_obj_id aca --out_dir_base ../figs --aca_vt_score_path ../objects/Presynaptic/aca_vt_scoring_df.csv
+```
+
+Figures are written to `figs/<vt_df name>/`.
+
+### Postsynaptic
+
+Postsynaptic figures are generated with [`code/postsynaptic_analysis/post_analysis.ipynb`](code/postsynaptic_analysis/post_analysis.ipynb).
