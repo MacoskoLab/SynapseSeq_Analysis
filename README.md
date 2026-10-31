@@ -33,6 +33,11 @@ gs://macosko_public/Synapseseq_data_2026
 
 For executing vignettes, required files will be downloaded at beginning of the notebook.
 
+### Manual Access
+
+You can also browse and download the data manually from the following link:  
+[Google Cloud Console – Synapseseq Data (2026)](https://console.cloud.google.com/storage/browser/macosko_public/Synapseseq_data_2026)
+
 
 File Info:
 
